@@ -1,0 +1,40 @@
+<ion-content scroll="false">
+  <header>
+    <img src="../../assets/img/logo.png" class="img-logo">
+  </header>
+  <main>
+    <div class="ion-padding">
+      <form [formGroup]="loginForm" (submit)="login()">
+        <ion-item>
+          <ion-label>
+            <ion-icon name="mail-outline"></ion-icon>
+          </ion-label>
+          <ion-input mask="000.000.000-00" [(ngModel)]="cpf" formControlName="cpf" type="text" placeholder="CPF"
+            clearInput clearOnEdit="false">
+          </ion-input>
+        </ion-item>
+        <span *ngIf="errorcpf" class="error"> {{messagecpf}}</span>
+        <ion-item>
+          <ion-label>
+            <ion-icon name="lock-closed-outline"></ion-icon>
+          </ion-label>
+          <ion-input [(ngModel)]="senha" formControlName="senha" type="password" placeholder="Senha" clearInput
+            clearOnEdit="false">
+          </ion-input>
+        </ion-item>
+        <span *ngIf="errorsenha" class="error"> {{messagesenha}}</span>
+        <div class="ion-padding">
+          <ion-button color="primary" expand="block" (click)="login()" [routerLink]="['/usuario/listar']"
+            fill="outline">LOGIN
+          </ion-button>
+          <ion-button expand="block" (click)="signup()" [routerLink]="['/usuario/cadastro']" type="button">
+            CADASTRE-SE
+          </ion-button>
+        </div>
+      </form>
+
+    </div>
+  </main>
+</ion-content>
+
+<!-- class="ion-padding"-->
