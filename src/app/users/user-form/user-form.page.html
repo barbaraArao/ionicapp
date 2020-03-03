@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form name="formCadastro" #form=ngForm (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label>Nome</ion-label>
+      <ion-input autocapitalize="on" [(ngModel)]="user.name" name="name"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>CPF</ion-label>
+      <ion-input [(ngModel)]="user.cpf" name="cpf"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Data Nascimento</ion-label>
+      <ion-input [(ngModel)]="user.data_nascimento" name="data_nascimento"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Telefone</ion-label>
+      <ion-input   [(ngModel)]="user.telefone" name="telefone"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input   [(ngModel)]="user.email" name="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Senha</ion-label>
+      <ion-input   [(ngModel)]="user.senha" name="senha"></ion-input>
+    </ion-item>
+    <div class="div-checkbox">
+      <ion-label [routerLink]="['/termos-de-uso']" color="primary"> Concordo com os termos de uso</ion-label>
+      <ion-checkbox slot="end" [(ngModel)]="user.termos_de_uso" name="termos_de_uso" required>
+      </ion-checkbox>
+    </div>
+
+
+    <div class="ion-margin-vertical">
+      <ion-button type="submit" color="secondary" [disabled]="!form.valid" expand="block">Salvar</ion-button>
+    </div>
+  </form>
+</ion-content>

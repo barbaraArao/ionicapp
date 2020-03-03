@@ -7,7 +7,7 @@ import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 })
 export class DatabaseService {
   db: SQLiteObject;
-  databaseName: string = 'myApp.db';
+  databaseName: string = 'barbara.db';
 
   constructor(private sqlite: SQLite, private sqlitePorter: SQLitePorter) { }
 
@@ -28,9 +28,10 @@ export class DatabaseService {
 
   getCreateTable() {
     const sqls = [];
-    sqls.push('CREATE TABLE IF NOT EXISTS users (id integer primary key AUTOINCREMENT, name varchar(100));');
+    sqls.push('CREATE TABLE IF NOT EXISTS users (id integer primary key AUTOINCREMENT, name varchar(100),  cpf varchar(11),  email varchar(100), senha varchar(15), data_nascimento DATE, telefone varchar(15), termos_de_uso BOOLEAN);');
     return sqls.join('\n');
   }
+
   executeSQL(sql: string, params?: any[]) {
     return this.db.executeSql(sql, params);
   }

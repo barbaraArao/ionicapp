@@ -8,7 +8,6 @@ import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
 
-import { NgxMaskIonicModule } from 'ngx-mask-ionic'
 
 
 @NgModule({
@@ -17,8 +16,7 @@ import { NgxMaskIonicModule } from 'ngx-mask-ionic'
     FormsModule,
     IonicModule,
     LoginPageRoutingModule,
-    ReactiveFormsModule,
-    NgxMaskIonicModule
+    ReactiveFormsModule
   ],
   declarations: [LoginPage]
 })

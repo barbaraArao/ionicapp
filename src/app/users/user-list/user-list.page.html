@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Usuários</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-searchbar placeholder="Pesquisar" (ionClear)="doSerchClear()" (ionChange)="doSerchBarChange($event)">
+  </ion-searchbar>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let user of users">
+      <ion-item-options side="start">
+        <ion-item-option [routerLink]="['edit', user.id]">
+          <ion-icon slot="icon-only" name="create" color="secondary"></ion-icon>
+        </ion-item-option>
+        <ion-item-option (click)="delete(user)">
+          <ion-icon slot="icon-only" name="trash" color="danger"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-card *ngFor="let user of users">
+    <ion-card-header>
+      <ion-card-title>{{user.name}}</ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+      CPF: {{user.cpf}} <br>
+      Data de nascimento: {{user.data_nascimento}} <br>
+      Email:{{user.email}} <br>
+      Telefone:{{user.telefone}} <br>
+      <ion-button fill="outline"  [routerLink]="['edit', user.id]"  slot="end">Editar</ion-button>
+      <ion-button color="secondary" (click)="delete(user)"  slot="end">Excluir</ion-button>
+
+    </ion-card-content>
+  </ion-card>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="secondary" [routerLink]="['new']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

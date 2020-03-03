@@ -1,19 +1,19 @@
 import { ToastController, AlertController } from '@ionic/angular';
-import { UsersService } from './../../core/service/users.service';
-import { Users } from './../../models/users';
+import { UserService } from '../shared/user.service';
+import { User } from '../shared/user';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-listar-usuario',
-  templateUrl: './listar-usuario.page.html',
-  styleUrls: ['./listar-usuario.page.scss'],
+  selector: 'app-user-list',
+  templateUrl: './user-list.page.html',
+  styleUrls: ['./user-list.page.scss'],
 })
-export class ListarUsuarioPage implements OnInit {
-  users: Users[] = [];
+export class UserListPage implements OnInit {
+  users: User[] = [];
 
   constructor(
-    private userService: UsersService,
-    private toastCtrl: ToastController,
+    private userService: UserService, 
+    private toastCtrl: ToastController, 
     private alertCtrl: AlertController) { }
 
   ngOnInit() {
@@ -38,10 +38,10 @@ export class ListarUsuarioPage implements OnInit {
     }
   }
 
-  async delete(user: Users) {
+  async delete(user: User) {
     const alert = await this.alertCtrl.create({
       header: 'Deletar?',
-      message: `Deseja excluir o contato: ${user.nome}?`,
+      message: `Deseja excluir o usuario: ${user.name}?`,
       buttons: [
         {
           text: 'Cancelar',
@@ -59,18 +59,16 @@ export class ListarUsuarioPage implements OnInit {
     alert.present();
   }
 
-  async executeDelete(user: Users) {
+  async executeDelete(user: User) {
     try {
-      // Removendo do banco de dados
       await this.userService.delete(user.id);
 
-      // Removendo do array
       const index = this.users.indexOf(user);
       this.users.splice(index, 1);
 
       const toast = await this.toastCtrl.create({
         header: 'Sucesso',
-        message: 'Contato excluído com sucesso.',
+        message: 'usuario excluído com sucesso.',
         color: 'success',
         position: 'bottom',
         duration: 3000
@@ -80,7 +78,7 @@ export class ListarUsuarioPage implements OnInit {
     } catch (error) {
       const toast = await this.toastCtrl.create({
         header: 'Erro',
-        message: 'Ocorreu um erro ao tentar excluir o Contato.',
+        message: 'Ocorreu um erro ao tentar excluir o usuario.',
         color: 'danger',
         position: 'bottom',
         duration: 3000
